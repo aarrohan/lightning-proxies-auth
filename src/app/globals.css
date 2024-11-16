@@ -2,20 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --primary-color-rgb: 29 32 38;
+    --accent-color-rgb: 22 117 255;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    @apply bg-white text-primary;
+  }
+}
+
+button,
+input,
+textarea,
+select {
+  outline: none;
+  background: none;
+}
+
+img {
+  user-select: none;
 }
