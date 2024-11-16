@@ -32,6 +32,13 @@ img {
   user-select: none;
 }
 
+input:focus {
+  touch-action: manipulation;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
+}
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
