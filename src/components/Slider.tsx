@@ -23,7 +23,7 @@ export default function Slider() {
   }, [currentSlide]);
 
   return (
-    <div className="h-full p-6 bg-gradient-to-b from-accent to-accent-dark rounded-2xl flex flex-col justify-center items-center">
+    <div className="h-full py-10 px-6 bg-gradient-to-b from-accent to-accent-dark rounded-2xl flex flex-col justify-center items-center">
       <div className="relative w-[550px] 2xl:w-[700px] h-[405px] 2xl:h-[516px]">
         <Image
           src={slider1Img}
