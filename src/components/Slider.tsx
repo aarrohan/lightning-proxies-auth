@@ -23,7 +23,7 @@ export default function Slider() {
   }, [currentSlide]);
 
   return (
-    <div className="h-full p-10 bg-gradient-to-b from-accent to-accent-dark rounded-2xl flex flex-col justify-center items-center">
+    <div className="h-full p-6 bg-gradient-to-b from-accent to-accent-dark rounded-2xl flex flex-col justify-center items-center">
       <div className="relative w-[550px] 2xl:w-[700px] h-[405px] 2xl:h-[516px]">
         <Image
           src={slider1Img}
@@ -88,32 +88,32 @@ export default function Slider() {
       </div>
 
       <div>
-        <p className="mb-6 text-sm font-medium tracking-[-0.14px] uppercase text-center text-white/75">
+        <p className="mb-6 text-xs 2xl:text-sm font-medium tracking-[-0.12px] 2xl:tracking-[-0.14px] uppercase text-center text-white/75">
           Trusted by World's Leading Web Scraping Companies
         </p>
 
-        <div className="flex flex-wrap justify-center items-center gap-6">
-          <Image src={googleImg} alt="" className="h-[20px]" />
+        <div className="flex flex-wrap justify-center items-center gap-4 2xl:gap-6">
+          <Image src={googleImg} alt="" className="h-[18px] 2xl:h-[20px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={alphabetImg} alt="" className="h-[20px]" />
+          <Image src={alphabetImg} alt="" className="h-[18px] 2xl:h-[20px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={metaImg} alt="" className="h-[14px]" />
+          <Image src={metaImg} alt="" className="h-[12px] 2xl:h-[14px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={microsoftImg} alt="" className="h-[20px]" />
+          <Image src={microsoftImg} alt="" className="h-[18px] 2xl:h-[20px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={amazonImg} alt="" className="h-[20px]" />
+          <Image src={amazonImg} alt="" className="h-[18px] 2xl:h-[20px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={stripeImg} alt="" className="h-[20px]" />
+          <Image src={stripeImg} alt="" className="h-[18px] 2xl:h-[20px]" />
         </div>
       </div>
     </div>

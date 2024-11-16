@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Email Sent - Lightning Proxies",
 };
 
-export default function Login() {
+export default function Success() {
   return (
     <main>
       <section className="grid xl:grid-cols-2">
