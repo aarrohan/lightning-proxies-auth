@@ -23,7 +23,7 @@ export default function Slider() {
   }, [currentSlide]);
 
   return (
-    <div className="p-10 bg-gradient-to-b from-accent to-accent-dark rounded-2xl flex flex-col justify-center items-center">
+    <div className="h-full p-10 bg-gradient-to-b from-accent to-accent-dark rounded-2xl flex flex-col justify-center items-center">
       <div className="relative w-[550px] 2xl:w-[700px] h-[405px] 2xl:h-[516px]">
         <Image
           src={slider1Img}
@@ -93,27 +93,27 @@ export default function Slider() {
         </p>
 
         <div className="flex flex-wrap justify-center items-center gap-6">
-          <Image src={googleImg} alt="" />
+          <Image src={googleImg} alt="" className="h-[20px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={alphabetImg} alt="" />
+          <Image src={alphabetImg} alt="" className="h-[20px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={metaImg} alt="" />
+          <Image src={metaImg} alt="" className="h-[14px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={microsoftImg} alt="" />
+          <Image src={microsoftImg} alt="" className="h-[20px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={amazonImg} alt="" />
+          <Image src={amazonImg} alt="" className="h-[20px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={stripeImg} alt="" />
+          <Image src={stripeImg} alt="" className="h-[20px]" />
         </div>
       </div>
     </div>
