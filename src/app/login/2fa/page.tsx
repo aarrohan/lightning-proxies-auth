@@ -18,7 +18,7 @@ export default function TwoFA() {
           <Slider />
         </div>
 
-        <div className="h-[100svh] xl:py-5 xl:pr-5 overflow-y-auto">
+        <div className="relative h-[100svh] xl:py-5 xl:pr-5 overflow-y-auto">
           <div className="h-full pt-12 xl:pt-16 pb-6 xl:pb-2 p-5 xl:px-16 flex flex-col justify-between">
             <div className="flex flex-col items-center">
               <Image
