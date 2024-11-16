@@ -1,5 +1,7 @@
 "use client";
+import Checkbox from "@/components/Checkbox";
 import SocialAuthBtn from "@/components/SocialAuthBtn";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Form() {
@@ -13,6 +15,8 @@ export default function Form() {
   const [cPassword, setCPassword] = useState<string>("");
 
   const [referralId, setReferralId] = useState<string>("");
+
+  const [isAgreed, setIsAgreed] = useState<boolean>(false);
 
   return (
     <form className="mb-6 w-full max-w-[465px]">
@@ -335,7 +339,7 @@ export default function Form() {
         </div>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-5">
         <div className="mb-1.5 flex justify-between items-center">
           <label
             htmlFor="referralId"
@@ -361,6 +365,21 @@ export default function Form() {
             boxShadow: "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
           }}
         />
+      </div>
+
+      <div className="mb-5 flex items-center gap-2.5">
+        <Checkbox isChecked={isAgreed} setIsChecked={setIsAgreed} />
+
+        <p className="text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75">
+          I agree to the{" "}
+          <Link href={"/"} className="text-accent underline hover:no-underline">
+            Terms of Service
+          </Link>{" "}
+          and{" "}
+          <Link href={"/"} className="text-accent underline hover:no-underline">
+            Privacy Policy
+          </Link>
+        </p>
       </div>
 
       <button className="active:scale-95 w-full py-2.5 hover:!ring-4 hover:!ring-accent/20 bg-accent rounded-[10px] text-sm sm:text-base font-semibold tracking-[-0.14px] sm:tracking-[-0.16px] text-white duration-200">
