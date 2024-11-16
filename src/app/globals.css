@@ -31,3 +31,7 @@ select {
 img {
   user-select: none;
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

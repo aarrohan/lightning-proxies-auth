@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer({ isVertical }: { isVertical?: boolean }) {
   return (
     <div
-      className={`w-full flex ${
+      className={`mt-14 w-full pb-6 flex ${
         isVertical ? "flex-col" : ""
       } justify-center xl:justify-between items-center gap-3`}
     >

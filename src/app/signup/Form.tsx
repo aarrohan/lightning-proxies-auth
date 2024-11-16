@@ -1,13 +1,18 @@
 "use client";
 import SocialAuthBtn from "@/components/SocialAuthBtn";
-import Link from "next/link";
 import { useState } from "react";
 
 export default function Form() {
   const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [password, setPassword] = useState<string>("");
+
+  const [showCPassword, setShowCPassword] = useState<boolean>(false);
+  const [cPassword, setCPassword] = useState<string>("");
+
+  const [referralId, setReferralId] = useState<string>("");
 
   return (
     <form className="mb-6 w-full max-w-[465px]">
@@ -40,7 +45,7 @@ export default function Form() {
               </defs>
             </svg>
           }
-          title="Login with Discord"
+          title="Sign up with Discord"
         />
 
         <SocialAuthBtn
@@ -71,7 +76,7 @@ export default function Form() {
               />
             </svg>
           }
-          title="Login with Google"
+          title="Sign up with Google"
         />
       </div>
 
@@ -157,13 +162,56 @@ export default function Form() {
           Username
         </label>
 
+        <div className="relative">
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            type="text"
+            placeholder="johndoe"
+            required
+            id="username"
+            className="w-full py-2.5 px-3.5 focus:!ring-4 focus:!ring-accent/20 border border-[#D0D5DD] focus:border-accent rounded-lg text-sm sm:text-base tracking-[-0.14px] sm:tracking-[-0.16px] placeholder:text-primary/50 duration-200"
+            style={{
+              boxShadow: "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
+            }}
+          />
+
+          <svg
+            width="14"
+            height="11"
+            viewBox="0 0 14 11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="absolute top-1/2 right-3.5 -translate-y-1/2"
+          >
+            <path
+              d="M13 1.5L4.75 9.75L1 6"
+              strokeWidth="1.25"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className={`${
+                username.length > 0 ? "stroke-accent" : "stroke-primary/50"
+              } duration-200`}
+            />
+          </svg>
+        </div>
+      </div>
+
+      <div className="mb-6">
+        <label
+          htmlFor="email"
+          className="mb-1.5 block text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-primary/75"
+        >
+          Email
+        </label>
+
         <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          type="text"
-          placeholder="Username or email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          placeholder="user@email.com"
           required
-          id="username"
+          id="email"
           className="w-full py-2.5 px-3.5 focus:!ring-4 focus:!ring-accent/20 border border-[#D0D5DD] focus:border-accent rounded-lg text-sm sm:text-base tracking-[-0.14px] sm:tracking-[-0.16px] placeholder:text-primary/50 duration-200"
           style={{
             boxShadow: "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
@@ -172,23 +220,12 @@ export default function Form() {
       </div>
 
       <div className="mb-6">
-        <div className="mb-1.5 flex justify-between items-center">
-          <label
-            htmlFor="password"
-            className="block text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-primary/75"
-          >
-            Password
-          </label>
-
-          <p className="text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75">
-            <Link
-              href={"/reset-password"}
-              className="text-accent underline hover:no-underline"
-            >
-              Forgot password?
-            </Link>
-          </p>
-        </div>
+        <label
+          htmlFor="password"
+          className="mb-1.5 block text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-primary/75"
+        >
+          Password
+        </label>
 
         <div className="relative">
           <input
@@ -240,8 +277,94 @@ export default function Form() {
         </div>
       </div>
 
+      <div className="mb-6">
+        <label
+          htmlFor="cPassword"
+          className="mb-1.5 block text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-primary/75"
+        >
+          Confirm Password
+        </label>
+
+        <div className="relative">
+          <input
+            value={cPassword}
+            onChange={(e) => setCPassword(e.target.value)}
+            type={showCPassword ? "text" : "password"}
+            placeholder="****************"
+            required
+            id="cPassword"
+            className="w-full py-2.5 px-3.5 focus:!ring-4 focus:!ring-accent/20 border border-[#D0D5DD] focus:border-accent rounded-lg text-sm sm:text-base tracking-[-0.14px] sm:tracking-[-0.16px] placeholder:text-primary/50 duration-200"
+            style={{
+              boxShadow: "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
+            }}
+          />
+
+          <button
+            onClick={() => {
+              setShowCPassword(!showCPassword);
+            }}
+            type="button"
+            className="absolute top-1/2 right-3.5 -translate-y-1/2 flex"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={`w-[16px] sm:w-[18px] h-auto ${
+                showCPassword ? "opacity-100" : "opacity-50"
+              } duration-200`}
+            >
+              <path
+                d="M1.81509 9.5349C1.71296 9.37312 1.66188 9.29228 1.63329 9.16755C1.61182 9.07388 1.61182 8.92612 1.63329 8.83245C1.66188 8.70772 1.71296 8.62688 1.81509 8.4651C2.65915 7.12863 5.17155 3.75 9.0003 3.75C12.8291 3.75 15.3415 7.12863 16.1855 8.4651C16.2877 8.62688 16.3388 8.70772 16.3673 8.83245C16.3888 8.92612 16.3888 9.07388 16.3673 9.16755C16.3388 9.29228 16.2877 9.37312 16.1855 9.5349C15.3415 10.8714 12.8291 14.25 9.0003 14.25C5.17155 14.25 2.65915 10.8714 1.81509 9.5349Z"
+                stroke="#181818"
+                strokeWidth="1.25"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M9 11.25C10.2427 11.25 11.25 10.2427 11.25 9C11.25 7.75732 10.2427 6.75 9 6.75C7.75732 6.75 6.75 7.75732 6.75 9C6.75 10.2427 7.75732 11.25 9 11.25Z"
+                stroke="#181818"
+                strokeWidth="1.25"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div className="mb-6">
+        <div className="mb-1.5 flex justify-between items-center">
+          <label
+            htmlFor="referralId"
+            className="block text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-primary/75"
+          >
+            Referral ID
+          </label>
+
+          <p className="text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/25">
+            *optional
+          </p>
+        </div>
+
+        <input
+          value={referralId}
+          onChange={(e) => setReferralId(e.target.value)}
+          type="text"
+          placeholder="000000"
+          required
+          id="referralId"
+          className="w-full py-2.5 px-3.5 focus:!ring-4 focus:!ring-accent/20 border border-[#D0D5DD] focus:border-accent rounded-lg text-sm sm:text-base tracking-[-0.14px] sm:tracking-[-0.16px] placeholder:text-primary/50 duration-200"
+          style={{
+            boxShadow: "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
+          }}
+        />
+      </div>
+
       <button className="active:scale-95 w-full py-2.5 hover:!ring-4 hover:!ring-accent/20 bg-accent rounded-[10px] text-sm sm:text-base font-semibold tracking-[-0.14px] sm:tracking-[-0.16px] text-white duration-200">
-        Login
+        Create Account
       </button>
     </form>
   );
