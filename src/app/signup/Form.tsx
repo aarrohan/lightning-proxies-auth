@@ -250,6 +250,7 @@ export default function Form() {
               setShowPassword(!showPassword);
             }}
             type="button"
+            aria-label="password eye button"
             className="absolute top-1/2 right-3.5 -translate-y-1/2 flex"
           >
             <svg
@@ -308,6 +309,7 @@ export default function Form() {
               setShowCPassword(!showCPassword);
             }}
             type="button"
+            aria-label="confirm password eye button"
             className="absolute top-1/2 right-3.5 -translate-y-1/2 flex"
           >
             <svg
