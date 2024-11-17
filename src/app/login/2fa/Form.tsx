@@ -39,7 +39,7 @@ export default function Form() {
           />
         </svg>
 
-        <p className="text-sm sm:text-base font-medium tracking-[-0.14px] sm:tracking-[-0.16px] text-[#00C943]">
+        <p className="text-sm sm:text-base font-medium tracking-[-0.14px] sm:tracking-[-0.16px] whitespace-nowrap text-[#00C943]">
           Authentication Success
         </p>
       </div>
@@ -67,7 +67,7 @@ export default function Form() {
           />
         </svg>
 
-        <p className="text-sm sm:text-base font-medium tracking-[-0.14px] sm:tracking-[-0.16px] text-[#DE0C3C]">
+        <p className="text-sm sm:text-base font-medium tracking-[-0.14px] sm:tracking-[-0.16px] whitespace-nowrap text-[#DE0C3C]">
           Authentication Failed
         </p>
       </div>
@@ -95,7 +95,7 @@ export default function Form() {
           />
         </svg>
 
-        <p className="text-sm sm:text-base font-medium tracking-[-0.14px] sm:tracking-[-0.16px] text-[#DC9100]">
+        <p className="text-sm sm:text-base font-medium tracking-[-0.14px] sm:tracking-[-0.16px] whitespace-nowrap text-[#DC9100]">
           Authentication Failed
         </p>
       </div>

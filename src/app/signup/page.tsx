@@ -14,7 +14,7 @@ export default function Signup() {
   return (
     <main>
       <section className="grid xl:grid-cols-2">
-        <div className="hide-scrollbar h-[100svh] xl:py-5 xl:pr-5 overflow-y-auto">
+        <div className="hide-scrollbar h-[100svh] xl:py-5 xl:pl-5 overflow-y-auto">
           <div className="h-full pt-12 xl:pt-16 pb-6 xl:pb-2 p-5 xl:px-16 flex flex-col justify-between">
             <div className="flex flex-col items-center">
               <Image
@@ -48,7 +48,7 @@ export default function Signup() {
           </div>
         </div>
 
-        <div className="h-[100svh] py-5 pl-5 hidden xl:block">
+        <div className="h-[100svh] py-5 pr-5 hidden xl:block">
           <Slider />
         </div>
       </section>
