@@ -39,7 +39,7 @@ export default function ResetPassword() {
 
               <Link
                 href={"/"}
-                className="mb-3 text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75"
+                className="mb-3 text-xs sm:text-sm font-semibold tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75"
               >
                 <svg
                   width="6"
@@ -57,7 +57,7 @@ export default function ResetPassword() {
                     fill="#181818"
                   />
                 </svg>
-                Go back to <span className="font-semibold">Login</span>
+                Go back to Login
               </Link>
             </div>
 

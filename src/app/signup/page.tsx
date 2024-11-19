@@ -38,7 +38,7 @@ export default function Signup() {
                 className="mb-3 text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75"
               >
                 Already have an account?{" "}
-                <span className="font-semibold">Login</span>
+                <span className="font-semibold text-accent">Login</span>
               </Link>
             </div>
 

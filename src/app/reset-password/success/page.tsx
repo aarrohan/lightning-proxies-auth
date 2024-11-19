@@ -45,7 +45,9 @@ export default function Success() {
                 className="mb-3 text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75"
               >
                 Facing other issues?{" "}
-                <span className="font-semibold">Contact Support</span>
+                <span className="font-semibold text-accent">
+                  Contact Support
+                </span>
               </Link>
             </div>
 

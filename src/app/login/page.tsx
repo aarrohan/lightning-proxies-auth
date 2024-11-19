@@ -42,7 +42,9 @@ export default function Login() {
                 className="mb-3 text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75"
               >
                 Don't have an account?{" "}
-                <span className="font-semibold">Create Account</span>
+                <span className="font-semibold text-accent">
+                  Create Account
+                </span>
               </Link>
             </div>
 
