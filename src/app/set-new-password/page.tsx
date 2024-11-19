@@ -32,15 +32,13 @@ export default function setNewPassword() {
 
               <Form />
 
-              <p className="mb-3 text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75">
+              <Link
+                href={"/"}
+                className="mb-3 text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75"
+              >
                 Facing other issues?{" "}
-                <Link
-                  href={"/"}
-                  className="text-accent underline hover:no-underline"
-                >
-                  Contact Support
-                </Link>
-              </p>
+                <span className="font-semibold">Contact Support</span>
+              </Link>
             </div>
 
             <Footer isVertical />

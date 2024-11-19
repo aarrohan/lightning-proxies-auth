@@ -37,7 +37,10 @@ export default function ResetPassword() {
 
               <Form />
 
-              <p className="mb-3 text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75">
+              <Link
+                href={"/"}
+                className="mb-3 text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75"
+              >
                 <svg
                   width="6"
                   height="10"
@@ -54,14 +57,8 @@ export default function ResetPassword() {
                     fill="#181818"
                   />
                 </svg>
-                Go back to{" "}
-                <Link
-                  href={"/"}
-                  className="text-accent underline hover:no-underline"
-                >
-                  Login
-                </Link>
-              </p>
+                Go back to <span className="font-semibold">Login</span>
+              </Link>
             </div>
 
             <Footer />

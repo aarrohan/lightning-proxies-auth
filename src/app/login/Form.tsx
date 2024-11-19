@@ -180,14 +180,12 @@ export default function Form() {
             Password
           </label>
 
-          <p className="text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75">
-            <Link
-              href={"/reset-password"}
-              className="text-accent underline hover:no-underline"
-            >
-              Forgot password?
-            </Link>
-          </p>
+          <Link
+            href={"/reset-password"}
+            className="text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75"
+          >
+            <span className="font-semibold">Forgot password?</span>
+          </Link>
         </div>
 
         <div className="relative">

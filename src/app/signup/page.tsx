@@ -33,15 +33,13 @@ export default function Signup() {
 
               <Form />
 
-              <p className="mb-3 text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75">
+              <Link
+                href={"/login"}
+                className="mb-3 text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75"
+              >
                 Already have an account?{" "}
-                <Link
-                  href={"/login"}
-                  className="text-accent underline hover:no-underline"
-                >
-                  Login
-                </Link>
-              </p>
+                <span className="font-semibold">Login</span>
+              </Link>
             </div>
 
             <Footer />

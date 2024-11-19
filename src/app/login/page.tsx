@@ -37,15 +37,13 @@ export default function Login() {
 
               <Form />
 
-              <p className="mb-3 text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75">
+              <Link
+                href={"/signup"}
+                className="mb-3 text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75"
+              >
                 Don't have an account?{" "}
-                <Link
-                  href={"/signup"}
-                  className="text-accent underline hover:no-underline"
-                >
-                  Create Account
-                </Link>
-              </p>
+                <span className="font-semibold">Create Account</span>
+              </Link>
             </div>
 
             <Footer />

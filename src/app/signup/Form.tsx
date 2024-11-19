@@ -374,11 +374,11 @@ export default function Form() {
 
         <p className="text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75">
           I agree to the{" "}
-          <Link href={"/"} className="text-accent underline hover:no-underline">
+          <Link href={"/"} className="font-semibold">
             Terms of Service
           </Link>{" "}
           and{" "}
-          <Link href={"/"} className="text-accent underline hover:no-underline">
+          <Link href={"/"} className="font-semibold">
             Privacy Policy
           </Link>
         </p>
