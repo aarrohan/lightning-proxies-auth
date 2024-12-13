@@ -53,14 +53,17 @@ export default function Slider() {
       <div className="mt-12 mb-20">
         <h2 className="mb-3 text-3xl font-semibold tracking-[-0.3px] text-center text-white">
           {currentSlide === 0 && "Get Access to Lightning Fast Proxies"}
-          {currentSlide === 1 && "Generator heading appears in this"}
-          {currentSlide === 2 && "Balance heading appears in this"}
+          {currentSlide === 1 && "Generator Preview"}
+          {currentSlide === 2 && "Depositing Your Balance, Simplified"}
         </h2>
 
         <p className="mb-8 max-w-[580px] text-base tracking-[-0.16px] text-center text-white/75">
-          Orci varius natoque penatibus et magnis dis parturient montes,
-          nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit.
+          {currentSlide === 0 &&
+            "With LightningProxies, you can scrape public data at lightningfast speeds while avoiding constant blocks and interruptions."}
+          {currentSlide === 1 &&
+            "Simplify proxy management with our advanced proxy generators—no more manual hassle!"}
+          {currentSlide === 2 &&
+            "Pay anytime, anywhere, with any method. LightningProxies accepts credit cards, PayPal, and even cryptocurrency."}
         </p>
 
         <div className="flex justify-center items-center gap-4">
