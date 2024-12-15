@@ -11,12 +11,12 @@ export default function Content() {
   useEffect(() => {
     setTimeout(() => {
       setShowAlert1(false);
-    }, 3000);
+    }, 2000);
   }, []);
 
   return (
     <main>
-      <div
+      {/* <div
         className={`absolute top-5 left-1/2 -translate-x-1/2 origin-top ${
           !showAlert1 ? "scale-50" : ""
         } py-2.5 px-4 bg-[#C4F5D5] rounded-xl flex items-center gap-2.5 ${
@@ -47,7 +47,7 @@ export default function Content() {
         <p className="text-sm sm:text-base font-medium tracking-[-0.14px] sm:tracking-[-0.16px] whitespace-nowrap text-[#00C943]">
           Success
         </p>
-      </div>
+      </div> */}
 
       <section>
         <div className="h-[100svh] xl:py-5 overflow-y-auto">
@@ -68,12 +68,39 @@ export default function Content() {
                 account using the new password
               </p>
 
-              <Link
-                href={"/"}
-                className="active:scale-95 mb-6 w-full max-w-[465px] py-2.5 hover:!ring-4 hover:!ring-accent/20 bg-accent rounded-[10px] flex justify-center items-center text-sm sm:text-base font-semibold tracking-[-0.14px] sm:tracking-[-0.16px] text-white duration-200"
-              >
-                Go to Login
-              </Link>
+              <div className="relative w-full max-w-[465px]">
+                <div
+                  className={`absolute z-10 top-0 left-0 mb-6 w-full py-2.5 bg-[#C4F5D5] rounded-[10px] flex justify-center items-center gap-2 text-sm sm:text-base font-semibold tracking-[-0.14px] sm:tracking-[-0.16px] text-[#00C943] ${
+                    !showAlert1 ? "opacity-0 pointer-events-none" : ""
+                  } duration-200`}
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.5 12L10.5 15L16.5 9M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  Success
+                </div>
+
+                <Link
+                  href={"/"}
+                  className={`active:scale-95 mb-6 w-full py-2.5 hover:!ring-4 hover:!ring-accent/20 bg-accent rounded-[10px] flex justify-center items-center text-sm sm:text-base font-semibold tracking-[-0.14px] sm:tracking-[-0.16px] text-white ${
+                    showAlert1 ? "opacity-0" : ""
+                  } duration-200`}
+                >
+                  Go to Login
+                </Link>
+              </div>
 
               <Link
                 href={"/"}
