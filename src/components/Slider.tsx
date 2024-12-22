@@ -59,7 +59,7 @@ export default function Slider() {
 
         <p className="mb-8 max-w-[580px] text-base tracking-[-0.16px] text-center text-white/75">
           {currentSlide === 0 &&
-            "With LightningProxies, you can scrape public data at lightningfast speeds while avoiding constant blocks and interruptions."}
+            "With LightningProxies, you can scrape public data at lightning-fast speeds while avoiding constant blocks and interruptions."}
           {currentSlide === 1 &&
             "Simplify proxy management with our advanced proxy generators—no more manual hassle!"}
           {currentSlide === 2 &&
@@ -92,31 +92,31 @@ export default function Slider() {
 
       <div>
         <p className="mb-6 text-xs 2xl:text-sm font-medium tracking-[-0.12px] 2xl:tracking-[-0.14px] uppercase text-center text-white/75">
-          Trusted by World's Leading Web Scraping Companies
+          TRUSTED BY TOP PARTNERS IN THE INDUSTRY
         </p>
 
-        <div className="flex flex-wrap justify-center items-center gap-4 2xl:gap-6">
-          <Image src={googleImg} alt="" className="h-[18px] 2xl:h-[20px]" />
+        <div className="flex flex-wrap justify-center items-center gap-4 2xl:gap-4">
+          <Image src={googleImg} alt="" className="h-[18px] 2xl:h-[25px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={alphabetImg} alt="" className="h-[18px] 2xl:h-[20px]" />
+          <Image src={alphabetImg} alt="" className="h-[18px] 2xl:h-[25px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={metaImg} alt="" className="h-[12px] 2xl:h-[14px]" />
+          <Image src={metaImg} alt="" className="h-[18px] 2xl:h-[25px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={microsoftImg} alt="" className="h-[18px] 2xl:h-[20px]" />
+          <Image src={microsoftImg} alt="" className="h-[16px] 2xl:h-[20px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={amazonImg} alt="" className="h-[18px] 2xl:h-[20px]" />
+          <Image src={amazonImg} alt="" className="h-[18px] 2xl:h-[25px]" />
 
           <span className="w-px h-[15px] bg-white/50"></span>
 
-          <Image src={stripeImg} alt="" className="h-[18px] 2xl:h-[20px]" />
+          <Image src={stripeImg} alt="" className="h-[18px] 2xl:h-[25px]" />
         </div>
       </div>
     </div>
