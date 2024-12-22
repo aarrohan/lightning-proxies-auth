@@ -7,7 +7,17 @@ import Link from "next/link";
 import Form from "./Form";
 
 export const metadata: Metadata = {
-  title: "2FA - Lightning Proxies",
+  title: "Two-Factor Authentication (2FA)",
+  description:
+    "Secure your account with OTP-based two-factor authentication. Add an extra layer of protection to your login process.",
+  openGraph: {
+    type: "website",
+    url: `${process.env.NEXT_PUBLIC_APP_URL}/login/2fa`,
+    title: "Two-Factor Authentication (2FA)",
+    description:
+      "Secure your account with OTP-based two-factor authentication. Add an extra layer of protection to your login process.",
+    images: `${process.env.NEXT_PUBLIC_WEB_URL}/images/og-img.png`,
+  },
 };
 
 export default function TwoFA() {

@@ -6,7 +6,17 @@ import emailSentImg from "@/assets/images/email-sent.svg";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Email Sent - Lightning Proxies",
+  title: "Verify Your Email Address",
+  description:
+    "Confirm your email address to complete your registration and gain full access to your account.",
+  openGraph: {
+    type: "website",
+    url: `${process.env.NEXT_PUBLIC_APP_URL}/reset-password/success`,
+    title: "Verify Your Email Address",
+    description:
+      "Confirm your email address to complete your registration and gain full access to your account.",
+    images: `${process.env.NEXT_PUBLIC_WEB_URL}/images/og-img.png`,
+  },
 };
 
 export default function Success() {

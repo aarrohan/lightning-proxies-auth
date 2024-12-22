@@ -7,7 +7,17 @@ import Link from "next/link";
 import Form from "./Form";
 
 export const metadata: Metadata = {
-  title: "Reset Password - Lightning Proxies",
+  title: "Forgot Your Password?",
+  description:
+    "Reset your account password securely. Enter your email address to start the recovery process.",
+  openGraph: {
+    type: "website",
+    url: `${process.env.NEXT_PUBLIC_APP_URL}/reset-password`,
+    title: "Forgot Your Password?",
+    description:
+      "Reset your account password securely. Enter your email address to start the recovery process.",
+    images: `${process.env.NEXT_PUBLIC_WEB_URL}/images/og-img.png`,
+  },
 };
 
 export default function ResetPassword() {

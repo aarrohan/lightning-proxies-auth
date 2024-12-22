@@ -6,7 +6,17 @@ import Link from "next/link";
 import Form from "./Form";
 
 export const metadata: Metadata = {
-  title: "Set New Password - Lightning Proxies",
+  title: "Set a New Password",
+  description:
+    "Create a strong and secure password to regain access to your account. Ensure your account’s safety with a new password.",
+  openGraph: {
+    type: "website",
+    url: `${process.env.NEXT_PUBLIC_APP_URL}/set-new-password`,
+    title: "Set a New Password",
+    description:
+      "Create a strong and secure password to regain access to your account. Ensure your account’s safety with a new password.",
+    images: `${process.env.NEXT_PUBLIC_WEB_URL}/images/og-img.png`,
+  },
 };
 
 export default function setNewPassword() {

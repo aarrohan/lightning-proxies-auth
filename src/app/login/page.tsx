@@ -7,7 +7,17 @@ import Link from "next/link";
 import Form from "./Form";
 
 export const metadata: Metadata = {
-  title: "Login - Lightning Proxies",
+  title: "Login to Your Account",
+  description:
+    "Securely access your account to manage proxy settings, view usage statistics, and adjust your plan.",
+  openGraph: {
+    type: "website",
+    url: `${process.env.NEXT_PUBLIC_APP_URL}/login`,
+    title: "Login to Your Account",
+    description:
+      "Securely access your account to manage proxy settings, view usage statistics, and adjust your plan.",
+    images: `${process.env.NEXT_PUBLIC_WEB_URL}/images/og-img.png`,
+  },
 };
 
 export default function Login() {

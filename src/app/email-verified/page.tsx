@@ -6,7 +6,17 @@ import emailVerifiedImg from "@/assets/images/email-verified.png";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Email Verified - Lightning Proxies",
+  title: "Email Verified Successfully",
+  description:
+    "Your email address has been successfully verified. You can now proceed to log in and use your account.",
+  openGraph: {
+    type: "website",
+    url: `${process.env.NEXT_PUBLIC_APP_URL}/email-verified`,
+    title: "Email Verified Successfully",
+    description:
+      "Your email address has been successfully verified. You can now proceed to log in and use your account.",
+    images: `${process.env.NEXT_PUBLIC_WEB_URL}/images/og-img.png`,
+  },
 };
 
 export default function TwoFA() {

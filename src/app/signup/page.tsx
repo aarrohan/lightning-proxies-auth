@@ -7,7 +7,17 @@ import Link from "next/link";
 import Form from "./Form";
 
 export const metadata: Metadata = {
-  title: "Create Account - Lightning Proxies",
+  title: "Register Your Account",
+  description:
+    "Create a new account to start using our premium proxy services. Enjoy seamless setup and unmatched performance.",
+  openGraph: {
+    type: "website",
+    url: `${process.env.NEXT_PUBLIC_APP_URL}/signup`,
+    title: "Register Your Account",
+    description:
+      "Create a new account to start using our premium proxy services. Enjoy seamless setup and unmatched performance.",
+    images: `${process.env.NEXT_PUBLIC_WEB_URL}/images/og-img.png`,
+  },
 };
 
 export default function Signup() {

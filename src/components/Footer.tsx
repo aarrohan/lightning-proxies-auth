@@ -21,7 +21,7 @@ export default function Footer({ isVertical }: { isVertical?: boolean }) {
         } hidden xl:flex items-center gap-3`}
       >
         <Link
-          href={"https://lp-test-web.vercel.app/legal/privacy-policy"}
+          href={`${process.env.NEXT_PUBLIC_WEB_URL}/legal/privacy-policy`}
           target="_blank"
           className="text-sm font-medium tracking-[-0.14px] text-primary/75 hover:text-accent duration-200"
         >
@@ -31,7 +31,7 @@ export default function Footer({ isVertical }: { isVertical?: boolean }) {
         <span className="w-[3px] aspect-square bg-primary/75 rounded-full"></span>
 
         <Link
-          href={"https://lp-test-web.vercel.app/legal/terms-of-service"}
+          href={`${process.env.NEXT_PUBLIC_WEB_URL}/legal/terms-of-service`}
           target="_blank"
           className="text-sm font-medium tracking-[-0.14px] text-primary/75 hover:text-accent duration-200"
         >
