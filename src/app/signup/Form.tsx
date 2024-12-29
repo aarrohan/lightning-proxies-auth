@@ -18,6 +18,11 @@ export default function Form() {
 
   const [isAgreed, setIsAgreed] = useState<boolean>(false);
 
+  const isPasswordValid = (passwordStr: string) => {
+    const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/;
+    return regex.test(passwordStr);
+  };
+
   return (
     <form className="mb-6 w-full max-w-[465px]">
       <div className="hidden sm:grid grid-cols-2 gap-5">
@@ -280,6 +285,13 @@ export default function Form() {
             </svg>
           </button>
         </div>
+
+        {password.length > 0 && !isPasswordValid(password) && (
+          <p className="mt-2 text-sm text-red-600">
+            Must Contain at least 8 Characters, One Uppercase, One Lowercase,
+            One Number, and One Special Character
+          </p>
+        )}
       </div>
 
       <div className="mb-6">
@@ -374,11 +386,19 @@ export default function Form() {
 
         <p className="text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75">
           I agree to the{" "}
-          <Link href={"/"} className="font-semibold text-accent">
+          <Link
+            href={`${process.env.NEXT_PUBLIC_WEB_URL}/legal/terms-of-service`}
+            target="_blank"
+            className="font-semibold text-accent"
+          >
             Terms of Service
           </Link>{" "}
           and{" "}
-          <Link href={"/"} className="font-semibold text-accent">
+          <Link
+            href={`${process.env.NEXT_PUBLIC_WEB_URL}/legal/privacy-policy`}
+            target="_blank"
+            className="font-semibold text-accent"
+          >
             Privacy Policy
           </Link>
         </p>

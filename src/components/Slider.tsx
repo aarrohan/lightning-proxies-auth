@@ -90,7 +90,7 @@ export default function Slider() {
         </div>
       </div>
 
-      <div>
+      <div className="max-w-[500px]">
         <p className="mb-6 text-xs 2xl:text-sm font-medium tracking-[-0.12px] 2xl:tracking-[-0.14px] uppercase text-center text-white/75">
           TRUSTED BY TOP PARTNERS IN THE INDUSTRY
         </p>
@@ -106,7 +106,7 @@ export default function Slider() {
 
           <Image src={metaImg} alt="" className="h-[18px] 2xl:h-[25px]" />
 
-          <span className="w-px h-[15px] bg-white/50"></span>
+          {/* <span className="w-px h-[15px] bg-white/50"></span> */}
 
           <Image src={microsoftImg} alt="" className="h-[16px] 2xl:h-[20px]" />
 
