@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Slider from "@/components/Slider";
 import iconImg from "@/assets/images/icon.svg";
 import Link from "next/link";
-import Form from "./Form";
+import FormWrapper from "./FormWrapper";
 
 export const metadata: Metadata = {
   title: "Register Your Account",
@@ -41,7 +41,7 @@ export default function Signup() {
                 Lightning fast proxies are just a click away
               </p>
 
-              <Form />
+              <FormWrapper />
 
               <Link
                 href={"/login"}

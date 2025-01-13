@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Slider from "@/components/Slider";
 import emailSentImg from "@/assets/images/email-sent.svg";
 import Link from "next/link";
-import Content from "./Content";
+import ContentWrapper from "./ContentWrapper";
 
 export const metadata: Metadata = {
   title: "Verify Your Email Address",
@@ -45,7 +45,7 @@ export default function Success() {
                 We just sent an email verification message to
               </p>
 
-              <Content />
+              <ContentWrapper />
 
               <span className="my-6 w-full max-w-[375px] h-px bg-primary/10 block"></span>
 
