@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 export default async function TwoFA({
   params,
 }: {
-  params: { twoFactorToken: string };
+  params: Promise<{ twoFactorToken: string }>;
 }) {
   const { twoFactorToken } = await params;
 

@@ -2,12 +2,6 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import Content from "./Content";
 
-interface PageProps {
-  params: {
-    verifyToken: string;
-  };
-}
-
 export const metadata: Metadata = {
   title: "Verify Email",
   description:
@@ -22,10 +16,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function VerifyEmail({ params }: PageProps) {
-  const resolvedParams = await params;
+export default async function VerifyEmail({
+  params,
+}: {
+  params: Promise<{ verifyToken: string }>;
+}) {
+  const { verifyToken } = await params;
 
-  if (!resolvedParams) return redirect("/");
+  if (!verifyToken) return redirect("/");
 
-  return <Content verifyToken={resolvedParams.verifyToken} />;
+  return <Content verifyToken={verifyToken} />;
 }
