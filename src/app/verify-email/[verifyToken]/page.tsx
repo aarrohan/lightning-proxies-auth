@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import Content from "./Content";
 
+interface PageProps {
+  params: {
+    verifyToken: string;
+  };
+}
+
 export const metadata: Metadata = {
   title: "Verify Email",
   description:
@@ -16,7 +22,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TwoFA({ params }: { params: { verifyToken: string } }) {
+export default async function TwoFA({ params }: PageProps) {
   if (!params.verifyToken) return redirect("/");
 
   return <Content verifyToken={params.verifyToken} />;
