@@ -19,5 +19,5 @@ export const metadata: Metadata = {
 export default function TwoFA({ params }: { params: { verifyToken: string } }) {
   if (!params.verifyToken) return redirect("/");
 
-  return <Content />;
+  return <Content verifyToken={params.verifyToken} />;
 }

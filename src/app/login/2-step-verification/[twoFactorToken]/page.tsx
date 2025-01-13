@@ -22,11 +22,11 @@ export const metadata: Metadata = {
 };
 
 export default function TwoFA({
-  params,
+  params = { twoFactorToken: "" },
 }: {
-  params: { twoFactorToken: string };
+  params?: { twoFactorToken?: string };
 }) {
-  if (!params.twoFactorToken) return redirect("/login");
+  if (!params || !params.twoFactorToken) return redirect("/login");
 
   return (
     <main>

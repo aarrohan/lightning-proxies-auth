@@ -30,5 +30,5 @@ export default function Content({ verifyToken }: { verifyToken: string }) {
     }
   }, []);
 
-  return;
+  return <></>;
 }
