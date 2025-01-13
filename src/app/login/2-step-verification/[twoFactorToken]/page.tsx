@@ -28,7 +28,9 @@ export const metadata: Metadata = {
 };
 
 export default async function TwoFA({ params }: PageProps) {
-  if (!params || !params.twoFactorToken) return redirect("/login");
+  const resolvedParams = await params;
+
+  if (!resolvedParams) return redirect("/login");
 
   return (
     <main>

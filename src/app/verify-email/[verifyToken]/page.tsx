@@ -22,8 +22,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function TwoFA({ params }: PageProps) {
-  if (!params.verifyToken) return redirect("/");
+export default async function VerifyEmail({ params }: PageProps) {
+  const resolvedParams = await params;
 
-  return <Content verifyToken={params.verifyToken} />;
+  if (!resolvedParams) return redirect("/");
+
+  return <Content verifyToken={resolvedParams.verifyToken} />;
 }
