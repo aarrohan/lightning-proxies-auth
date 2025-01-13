@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import setNewPasswordImg from "@/assets/images/set-new-password.svg";
 import Link from "next/link";
 import Form from "./Form";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Set a New Password",
@@ -19,7 +20,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function setNewPassword() {
+export default async function setNewPassword({
+  params,
+}: {
+  params: Promise<{ resetPasswordToken: string }>;
+}) {
+  const { resetPasswordToken } = await params;
+
+  if (!resetPasswordToken) redirect("/reset-password");
+
   return (
     <main>
       <section>
@@ -40,7 +49,7 @@ export default function setNewPassword() {
                 Create a new strong password for your account
               </p>
 
-              <Form />
+              <Form resetPasswordToken={resetPasswordToken} />
 
               <Link
                 href={"/"}

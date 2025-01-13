@@ -1,15 +1,56 @@
 "use client";
 import { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { backendServerBaseURL } from "@/utils/auth";
+import { toast } from "react-toastify";
 
-export default function Form() {
+export default function Form({
+  resetPasswordToken,
+}: {
+  resetPasswordToken: string;
+}) {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [password, setPassword] = useState<string>("");
 
   const [showCPassword, setShowCPassword] = useState<boolean>(false);
   const [cPassword, setCPassword] = useState<string>("");
 
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (password !== cPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    try {
+      await axios
+        .patch(`${backendServerBaseURL}/auth/forgot-password`, {
+          newPassword: password,
+          resetPasswordToken,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            router.push("/password-reset-success");
+          }
+        })
+        .catch((error) => {
+          if (error.response.status === 400) {
+            toast.error(error.response.data.message);
+          }
+        });
+    } catch (error) {
+      if (error) {
+        toast.error(error as string);
+      }
+    }
+  };
+
   return (
-    <form className="mb-6 w-full max-w-[465px]">
+    <form onSubmit={handleSubmit} className="mb-6 w-full max-w-[465px]">
       <div className="mb-6">
         <label
           htmlFor="password"
