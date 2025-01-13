@@ -1,8 +1,13 @@
 "use client";
+import { useEffect, useState } from "react";
 import Checkbox from "@/components/Checkbox";
 import SocialAuthBtn from "@/components/SocialAuthBtn";
 import Link from "next/link";
-import { useState } from "react";
+import { useGoogleLogin } from "@react-oauth/google";
+import { backendServerBaseURL } from "@/utils/auth";
+import axios from "axios";
+import { useRouter, useParams } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function Form() {
   const [username, setUsername] = useState<string>("");
@@ -18,46 +23,212 @@ export default function Form() {
 
   const [isAgreed, setIsAgreed] = useState<boolean>(false);
 
+  const router = useRouter();
+  const params = useParams();
+
+  useEffect(() => {
+    const discordCode = params.code;
+
+    if (discordCode) {
+      axios
+        .post(`${backendServerBaseURL}/auth/signup`, {
+          discordCode: discordCode,
+          type: "discord",
+          recaptchToken: sessionStorage.getItem("recaptchaToken") ?? "",
+          referral: "",
+          Partnerslink: null,
+        })
+        .then((response) => {
+          if (
+            response.status === 200 &&
+            response.data.message === "Signup successfully"
+          ) {
+            router.push("/login");
+          }
+        })
+        .catch((error) => {
+          try {
+            if (error.response.status === 400) {
+              toast.error(error.response.data.message);
+            }
+
+            if (error.response.status === 500) {
+              toast.error("Something went wrong (error 500)");
+            }
+          } catch {}
+        });
+    }
+  }, []);
+
   const isPasswordValid = (passwordStr: string) => {
     const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/;
     return regex.test(passwordStr);
   };
 
-  return (
-    <form className="mb-6 w-full max-w-[465px]">
-      <div className="hidden sm:grid grid-cols-2 gap-5">
-        <SocialAuthBtn
-          icon={
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-[16px] sm:w-[20px] h-auto"
-            >
-              <g clipPath="url(#clip0_239_9141)">
-                <path
-                  d="M16.5924 4.54963C15.3799 3.99329 14.0797 3.5834 12.7203 3.34864C12.6955 3.34411 12.6708 3.35543 12.658 3.37808C12.4908 3.67549 12.3056 4.06349 12.1759 4.36845C10.7137 4.14955 9.25902 4.14955 7.82683 4.36845C7.69709 4.05671 7.50514 3.67549 7.33717 3.37808C7.32442 3.35619 7.29969 3.34487 7.27493 3.34864C5.91623 3.58265 4.61602 3.99254 3.40278 4.54963C3.39228 4.55416 3.38327 4.56171 3.3773 4.57152C0.911071 8.25601 0.235467 11.8499 0.566896 15.3993C0.568395 15.4167 0.578143 15.4333 0.59164 15.4438C2.21879 16.6388 3.79496 17.3642 5.34186 17.8451C5.36661 17.8526 5.39285 17.8436 5.4086 17.8232C5.77452 17.3235 6.1007 16.7966 6.38038 16.2425C6.39688 16.21 6.38113 16.1715 6.34739 16.1587C5.83001 15.9624 5.33736 15.7231 4.86346 15.4514C4.82597 15.4295 4.82297 15.3759 4.85746 15.3502C4.95718 15.2755 5.05693 15.1977 5.15216 15.1192C5.16939 15.1049 5.19339 15.1019 5.21365 15.1109C8.32696 16.5324 11.6975 16.5324 14.7741 15.1109C14.7943 15.1011 14.8183 15.1042 14.8363 15.1185C14.9315 15.197 15.0313 15.2755 15.1317 15.3502C15.1662 15.3759 15.164 15.4295 15.1265 15.4514C14.6526 15.7284 14.1599 15.9624 13.6418 16.1579C13.6081 16.1708 13.5931 16.21 13.6096 16.2425C13.8953 16.7958 14.2214 17.3227 14.5806 17.8224C14.5956 17.8436 14.6226 17.8526 14.6473 17.8451C16.2017 17.3642 17.7779 16.6388 19.4051 15.4438C19.4193 15.4333 19.4283 15.4174 19.4298 15.4001C19.8265 11.2966 18.7654 7.73214 16.6172 4.57227C16.6119 4.56171 16.6029 4.55416 16.5924 4.54963ZM6.8453 13.2381C5.90798 13.2381 5.13565 12.3776 5.13565 11.3208C5.13565 10.2639 5.893 9.40342 6.8453 9.40342C7.80507 9.40342 8.56992 10.2715 8.55492 11.3208C8.55492 12.3776 7.79757 13.2381 6.8453 13.2381ZM13.1664 13.2381C12.2291 13.2381 11.4568 12.3776 11.4568 11.3208C11.4568 10.2639 12.2141 9.40342 13.1664 9.40342C14.1262 9.40342 14.891 10.2715 14.8761 11.3208C14.8761 12.3776 14.1262 13.2381 13.1664 13.2381Z"
-                  fill="#5865F2"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_239_9141">
-                  <rect
-                    width="19.1977"
-                    height="19.1977"
-                    fill="white"
-                    transform="translate(0.400391 0.401367)"
-                  />
-                </clipPath>
-              </defs>
-            </svg>
+  const googleSignup = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      console.log(tokenResponse);
+
+      const userInfo = await axios.get(
+        "https://www.googleapis.com/oauth2/v3/userinfo",
+        {
+          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+        }
+      );
+
+      const userData = userInfo.data;
+
+      // let google_username = await generateUniqueName(userData.given_name);
+      const google_username = await userData.given_name;
+      const avatarUrl = null;
+
+      try {
+        await axios
+          .post(`${backendServerBaseURL}/auth/signup`, {
+            username: google_username,
+            email: userData.email,
+            password: userData.sub + "24" + userData.email,
+            type: "google",
+            clientId: userData.sub,
+            avatarUrl: avatarUrl,
+            referral: "",
+            Partnerslink: null,
+          })
+          .then((response) => {
+            if (
+              response.status === 200 &&
+              response.data.message === "Signup successfully"
+            ) {
+              router.push("/login");
+            }
+
+            if (
+              response.status === 200 &&
+              response.data.message === "Link sent Successfully"
+            ) {
+              router.push("/verify-email");
+            }
+          })
+          .catch((error) => {
+            try {
+              if (error.response.status === 400) {
+                toast.error(error.response.data.message);
+              }
+            } catch {}
+          });
+      } catch (error) {
+        if (error) {
+          toast.error(error as string);
+        }
+      }
+    },
+    onError: (errorResponse) => console.log(errorResponse),
+  });
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (password !== cPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    if (!isPasswordValid(password)) {
+      toast.error(
+        "Password must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character"
+      );
+      return;
+    }
+
+    if (!isAgreed) {
+      toast.error("Please agree to the terms and conditions");
+      return;
+    }
+
+    try {
+      await axios
+        .post(`${backendServerBaseURL}/auth/signup`, {
+          username: username,
+          email: email,
+          password: password,
+          type: "normal",
+          recaptchToken: sessionStorage.getItem("recaptchaToken") ?? "",
+          referral: referralId,
+          Partnerslink: null,
+        })
+        .then((response) => {
+          if (
+            response.status === 200 &&
+            response.data.message === "Signup successfully"
+          ) {
+            router.push("/login");
           }
-          title="Sign up with Discord"
-        />
+
+          if (
+            response.status === 200 &&
+            response.data.message === "Link sent Successfully"
+          ) {
+            router.push("/verify-email");
+          }
+        })
+        .catch((error) => {
+          try {
+            if (error.response.status === 400) {
+              toast.error(error.response.data.message);
+            }
+          } catch {}
+        });
+    } catch (error) {
+      if (error) {
+        toast.error(error as string);
+      }
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="mb-6 w-full max-w-[465px]">
+      <div className="hidden sm:grid grid-cols-2 gap-5">
+        <Link
+          href={`https://discord.com/api/oauth2/authorize?client_id=1295808694851866654&redirect_uri=${encodeURIComponent(
+            `https://lightningproxies.net/register`
+          )}&response_type=code&scope=${encodeURIComponent(
+            "identify email"
+          )}&state=1`}
+        >
+          <SocialAuthBtn
+            icon={
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-[16px] sm:w-[20px] h-auto"
+              >
+                <g clipPath="url(#clip0_239_9141)">
+                  <path
+                    d="M16.5924 4.54963C15.3799 3.99329 14.0797 3.5834 12.7203 3.34864C12.6955 3.34411 12.6708 3.35543 12.658 3.37808C12.4908 3.67549 12.3056 4.06349 12.1759 4.36845C10.7137 4.14955 9.25902 4.14955 7.82683 4.36845C7.69709 4.05671 7.50514 3.67549 7.33717 3.37808C7.32442 3.35619 7.29969 3.34487 7.27493 3.34864C5.91623 3.58265 4.61602 3.99254 3.40278 4.54963C3.39228 4.55416 3.38327 4.56171 3.3773 4.57152C0.911071 8.25601 0.235467 11.8499 0.566896 15.3993C0.568395 15.4167 0.578143 15.4333 0.59164 15.4438C2.21879 16.6388 3.79496 17.3642 5.34186 17.8451C5.36661 17.8526 5.39285 17.8436 5.4086 17.8232C5.77452 17.3235 6.1007 16.7966 6.38038 16.2425C6.39688 16.21 6.38113 16.1715 6.34739 16.1587C5.83001 15.9624 5.33736 15.7231 4.86346 15.4514C4.82597 15.4295 4.82297 15.3759 4.85746 15.3502C4.95718 15.2755 5.05693 15.1977 5.15216 15.1192C5.16939 15.1049 5.19339 15.1019 5.21365 15.1109C8.32696 16.5324 11.6975 16.5324 14.7741 15.1109C14.7943 15.1011 14.8183 15.1042 14.8363 15.1185C14.9315 15.197 15.0313 15.2755 15.1317 15.3502C15.1662 15.3759 15.164 15.4295 15.1265 15.4514C14.6526 15.7284 14.1599 15.9624 13.6418 16.1579C13.6081 16.1708 13.5931 16.21 13.6096 16.2425C13.8953 16.7958 14.2214 17.3227 14.5806 17.8224C14.5956 17.8436 14.6226 17.8526 14.6473 17.8451C16.2017 17.3642 17.7779 16.6388 19.4051 15.4438C19.4193 15.4333 19.4283 15.4174 19.4298 15.4001C19.8265 11.2966 18.7654 7.73214 16.6172 4.57227C16.6119 4.56171 16.6029 4.55416 16.5924 4.54963ZM6.8453 13.2381C5.90798 13.2381 5.13565 12.3776 5.13565 11.3208C5.13565 10.2639 5.893 9.40342 6.8453 9.40342C7.80507 9.40342 8.56992 10.2715 8.55492 11.3208C8.55492 12.3776 7.79757 13.2381 6.8453 13.2381ZM13.1664 13.2381C12.2291 13.2381 11.4568 12.3776 11.4568 11.3208C11.4568 10.2639 12.2141 9.40342 13.1664 9.40342C14.1262 9.40342 14.891 10.2715 14.8761 11.3208C14.8761 12.3776 14.1262 13.2381 13.1664 13.2381Z"
+                    fill="#5865F2"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_239_9141">
+                    <rect
+                      width="19.1977"
+                      height="19.1977"
+                      fill="white"
+                      transform="translate(0.400391 0.401367)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+            }
+            title="Sign up with Discord"
+          />
+        </Link>
 
         <SocialAuthBtn
+          onClick={googleSignup}
           icon={
             <svg
               width="19"
@@ -372,7 +543,6 @@ export default function Form() {
           onChange={(e) => setReferralId(e.target.value)}
           type="text"
           placeholder="000000"
-          required
           id="referralId"
           className="w-full py-2.5 px-3.5 focus:!ring-4 focus:!ring-accent/20 border border-[#D0D5DD] focus:border-accent rounded-lg text-sm sm:text-base tracking-[-0.14px] sm:tracking-[-0.16px] placeholder:text-primary/50 duration-200"
           style={{
