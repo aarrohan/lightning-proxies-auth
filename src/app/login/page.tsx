@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Slider from "@/components/Slider";
 import iconImg from "@/assets/images/icon.svg";
 import Link from "next/link";
-import Form from "./Form";
+import FormWrapper from "./FormWrapper";
 
 export const metadata: Metadata = {
   title: "Login to Your Account",
@@ -45,7 +45,7 @@ export default function Login() {
                 Welcome back, we're glad to see you
               </p>
 
-              <Form />
+              <FormWrapper />
 
               <Link
                 href={"/signup"}
