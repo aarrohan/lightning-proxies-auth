@@ -2,7 +2,7 @@
 import SocialAuthBtn from "@/components/SocialAuthBtn";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 import { backendServerBaseURL } from "@/utils/auth";
 import axios from "axios";
@@ -15,10 +15,10 @@ export default function Form() {
   const [password, setPassword] = useState<string>("");
 
   const router = useRouter();
-  const params = useParams();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const discordCode = params.code;
+    const discordCode = searchParams.get("code");
 
     if (discordCode) {
       axios

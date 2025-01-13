@@ -1,11 +1,42 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { backendServerBaseURL } from "@/utils/auth";
 
 export default function Form() {
   const [email, setEmail] = useState<string>("");
 
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      await axios
+        .post(`${backendServerBaseURL}/auth/forgot-password`, {
+          email,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            router.push(`/reset-password/success?email=${email}`);
+          }
+        })
+        .catch((error) => {
+          if (error.response.status === 400) {
+            toast.error(error.response.data.message);
+          }
+        });
+    } catch (error) {
+      if (error) {
+        toast.error(error as string);
+      }
+    }
+  };
+
   return (
-    <form className="mb-6 w-full max-w-[465px]">
+    <form onSubmit={handleSubmit} className="mb-6 w-full max-w-[465px]">
       <div className="mb-6">
         <label
           htmlFor="email"

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useGoogleLogin } from "@react-oauth/google";
 import { backendServerBaseURL } from "@/utils/auth";
 import axios from "axios";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 
 export default function Form() {
@@ -24,10 +24,10 @@ export default function Form() {
   const [isAgreed, setIsAgreed] = useState<boolean>(false);
 
   const router = useRouter();
-  const params = useParams();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const discordCode = params.code;
+    const discordCode = searchParams.get("code");
 
     if (discordCode) {
       axios
