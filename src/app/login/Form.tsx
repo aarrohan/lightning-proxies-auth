@@ -4,9 +4,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
-import { backendServerBaseURL } from "@/utils/auth";
+import { backendServerBaseURL, googleRecaptchKey } from "@/utils/auth";
 import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Form() {
   const [username, setUsername] = useState<string>("");
@@ -351,6 +352,7 @@ export default function Form() {
           }}
         />
       </div>
+
       <div className="mb-6">
         <div className="mb-1.5 flex justify-between items-center">
           <label
@@ -368,7 +370,7 @@ export default function Form() {
           </Link>
         </div>
 
-        <div className="relative">
+        <div className="relative mb-6">
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -416,7 +418,17 @@ export default function Form() {
             </svg>
           </button>
         </div>
+
+        <ReCAPTCHA
+          sitekey={googleRecaptchKey}
+          onChange={(value) => {
+            if (value) {
+              sessionStorage.setItem("recaptchaToken", value);
+            }
+          }}
+        />
       </div>
+
       <button className="active:scale-95 w-full py-2.5 hover:!ring-4 hover:!ring-accent/20 bg-accent rounded-[10px] text-sm sm:text-base font-semibold tracking-[-0.14px] sm:tracking-[-0.16px] text-white duration-200">
         Login
       </button>

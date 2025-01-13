@@ -4,10 +4,11 @@ import Checkbox from "@/components/Checkbox";
 import SocialAuthBtn from "@/components/SocialAuthBtn";
 import Link from "next/link";
 import { useGoogleLogin } from "@react-oauth/google";
-import { backendServerBaseURL } from "@/utils/auth";
+import { backendServerBaseURL, googleRecaptchKey } from "@/utils/auth";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Form() {
   const [username, setUsername] = useState<string>("");
@@ -577,7 +578,16 @@ export default function Form() {
         </p>
       </div>
 
-      <button className="active:scale-95 w-full py-2.5 hover:!ring-4 hover:!ring-accent/20 bg-accent rounded-[10px] text-sm sm:text-base font-semibold tracking-[-0.14px] sm:tracking-[-0.16px] text-white duration-200">
+      <ReCAPTCHA
+        sitekey={googleRecaptchKey}
+        onChange={(value) => {
+          if (value) {
+            sessionStorage.setItem("recaptchaToken", value);
+          }
+        }}
+      />
+
+      <button className="active:scale-95 mt-6 w-full py-2.5 hover:!ring-4 hover:!ring-accent/20 bg-accent rounded-[10px] text-sm sm:text-base font-semibold tracking-[-0.14px] sm:tracking-[-0.16px] text-white duration-200">
         Create Account
       </button>
     </form>
