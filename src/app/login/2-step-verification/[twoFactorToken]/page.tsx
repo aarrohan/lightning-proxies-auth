@@ -7,12 +7,6 @@ import Link from "next/link";
 import Form from "./Form";
 import { redirect } from "next/navigation";
 
-interface PageProps {
-  params: {
-    twoFactorToken: string;
-  };
-}
-
 export const metadata: Metadata = {
   title: "Two-Factor Authentication (2FA)",
   description:
@@ -27,10 +21,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function TwoFA({ params }: PageProps) {
-  const resolvedParams = await params;
+export default async function TwoFA({
+  params,
+}: {
+  params: { twoFactorToken: string };
+}) {
+  const { twoFactorToken } = await params;
 
-  if (!resolvedParams) return redirect("/login");
+  if (!twoFactorToken) redirect("/login");
 
   return (
     <main>
@@ -56,7 +54,7 @@ export default async function TwoFA({ params }: PageProps) {
                 Please enter your authentication code to gain access
               </p>
 
-              <Form twoFactorToken={params.twoFactorToken} />
+              <Form twoFactorToken={twoFactorToken} />
 
               <Link
                 href={"/"}
