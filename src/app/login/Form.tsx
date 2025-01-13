@@ -53,15 +53,13 @@ export default function Form() {
           }
         })
         .catch((error) => {
-          try {
-            if (error.response.status === 400) {
-              toast.error(error.response.data.message);
-            }
+          if (error.response.status === 400) {
+            toast.error(error.response.data.message);
+          }
 
-            if (error.response.data.message === "User email is not verified") {
-              router.push(`/verify-email/${error.response.data.payload.id}`);
-            }
-          } catch {}
+          if (error.response.data.message === "User email is not verified") {
+            router.push(`/verify-email/${error.response.data.payload.id}`);
+          }
         });
     }
   }, []);
@@ -112,17 +110,13 @@ export default function Form() {
             }
           })
           .catch((error) => {
-            try {
-              if (error.response.status === 400) {
-                toast.error(error.response.data.message);
-              }
+            if (error.response.status === 400) {
+              toast.error(error.response.data.message);
+            }
 
-              if (
-                error.response.data.message === "User email is not verified"
-              ) {
-                router.push(`/verify-email/${error.response.data.payload.id}`);
-              }
-            } catch {}
+            if (error.response.data.message === "User email is not verified") {
+              router.push(`/verify-email/${error.response.data.payload.id}`);
+            }
           });
       } catch (error) {
         toast.error(error as string);
@@ -168,11 +162,9 @@ export default function Form() {
           }
         })
         .catch((error) => {
-          try {
-            if (error.response.status === 400) {
-              toast.error(error.response.data.message);
-            }
-          } catch {}
+          if (error.response.status === 400) {
+            toast.error(error.response.data.message);
+          }
         });
     } catch (error) {
       if (error) {
@@ -186,7 +178,7 @@ export default function Form() {
       <div className="hidden sm:grid grid-cols-2 gap-5">
         <Link
           href={`https://discord.com/api/oauth2/authorize?client_id=1295808694851866654&redirect_uri=${encodeURIComponent(
-            `https://lightningproxies.net/login`
+            `${process.env.NEXT_PUBLIC_APP_URL}/login`
           )}&response_type=code&scope=${encodeURIComponent(
             "identify email"
           )}&state=1`}
@@ -259,7 +251,7 @@ export default function Form() {
       <div className="grid sm:hidden grid-cols-2 gap-3 sm:gap-5">
         <Link
           href={`https://discord.com/api/oauth2/authorize?client_id=1295808694851866654&redirect_uri=${encodeURIComponent(
-            `https://lightningproxies.net/login`
+            `${process.env.NEXT_PUBLIC_APP_URL}/login`
           )}&response_type=code&scope=${encodeURIComponent(
             "identify email"
           )}&state=1`}

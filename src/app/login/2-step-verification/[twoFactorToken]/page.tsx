@@ -5,6 +5,7 @@ import Slider from "@/components/Slider";
 import twoFAImg from "@/assets/images/2fa.svg";
 import Link from "next/link";
 import Form from "./Form";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Two-Factor Authentication (2FA)",
@@ -20,7 +21,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TwoFA() {
+export default function TwoFA({
+  params,
+}: {
+  params: { twoFactorToken: string };
+}) {
+  if (!params.twoFactorToken) return redirect("/login");
+
   return (
     <main>
       <section className="grid xl:grid-cols-2">
@@ -45,7 +52,7 @@ export default function TwoFA() {
                 Please enter your authentication code to gain access
               </p>
 
-              <Form />
+              <Form twoFactorToken={params.twoFactorToken} />
 
               <Link
                 href={"/"}

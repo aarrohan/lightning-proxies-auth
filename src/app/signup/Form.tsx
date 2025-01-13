@@ -47,15 +47,13 @@ export default function Form() {
           }
         })
         .catch((error) => {
-          try {
-            if (error.response.status === 400) {
-              toast.error(error.response.data.message);
-            }
+          if (error.response.status === 400) {
+            toast.error(error.response.data.message);
+          }
 
-            if (error.response.status === 500) {
-              toast.error("Something went wrong (error 500)");
-            }
-          } catch {}
+          if (error.response.status === 500) {
+            toast.error("Something went wrong (error 500)");
+          }
         });
     }
   }, []);
@@ -110,11 +108,9 @@ export default function Form() {
             }
           })
           .catch((error) => {
-            try {
-              if (error.response.status === 400) {
-                toast.error(error.response.data.message);
-              }
-            } catch {}
+            if (error.response.status === 400) {
+              toast.error(error.response.data.message);
+            }
           });
       } catch (error) {
         if (error) {
@@ -172,11 +168,9 @@ export default function Form() {
           }
         })
         .catch((error) => {
-          try {
-            if (error.response.status === 400) {
-              toast.error(error.response.data.message);
-            }
-          } catch {}
+          if (error.response.status === 400) {
+            toast.error(error.response.data.message);
+          }
         });
     } catch (error) {
       if (error) {
@@ -190,7 +184,7 @@ export default function Form() {
       <div className="hidden sm:grid grid-cols-2 gap-5">
         <Link
           href={`https://discord.com/api/oauth2/authorize?client_id=1295808694851866654&redirect_uri=${encodeURIComponent(
-            `https://lightningproxies.net/register`
+            `${process.env.NEXT_PUBLIC_APP_URL}/signup`
           )}&response_type=code&scope=${encodeURIComponent(
             "identify email"
           )}&state=1`}
@@ -263,7 +257,7 @@ export default function Form() {
       <div className="grid sm:hidden grid-cols-2 gap-3 sm:gap-5">
         <Link
           href={`https://discord.com/api/oauth2/authorize?client_id=1295808694851866654&redirect_uri=${encodeURIComponent(
-            `https://lightningproxies.net/register`
+            `${process.env.NEXT_PUBLIC_APP_URL}/signup`
           )}&response_type=code&scope=${encodeURIComponent(
             "identify email"
           )}&state=1`}

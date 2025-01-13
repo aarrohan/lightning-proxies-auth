@@ -1,13 +1,50 @@
 "use client";
 import { useState } from "react";
 import OtpInput from "react-otp-input";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { backendServerBaseURL } from "@/utils/auth";
 
-export default function Form() {
+export default function Form({ twoFactorToken }: { twoFactorToken: string }) {
   const [showAlert1, setShowAlert1] = useState<boolean>(false);
   const [showAlert2, setShowAlert2] = useState<boolean>(false);
   const [showAlert3, setShowAlert3] = useState<boolean>(false);
 
   const [otp, setOtp] = useState<string>("");
+
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (otp.length !== 6) {
+      toast.error("Please enter a valid 6-digit code");
+      return;
+    }
+
+    try {
+      await axios
+        .post(`${backendServerBaseURL}/auth/mfa/verify`, {
+          twoFactorToken: twoFactorToken,
+          totp: otp,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            router.push("/dashboard");
+          }
+        })
+        .catch((error) => {
+          if (error.response.status === 400) {
+            toast.error(error.response.data.message);
+          }
+        });
+    } catch (error) {
+      if (error) {
+        toast.error(error as string);
+      }
+    }
+  };
 
   return (
     <>
@@ -100,10 +137,7 @@ export default function Form() {
         </p>
       </div>
 
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        className="mb-6 w-full max-w-[465px]"
-      >
+      <form onSubmit={handleSubmit} className="mb-6 w-full max-w-[465px]">
         <div className="mb-6 flex flex-col items-center">
           <label className="mb-2.5 block text-xs sm:text-sm font-medium tracking-[-0.12px] sm:tracking-[-0.14px] text-center text-primary/75">
             Authentication Code
