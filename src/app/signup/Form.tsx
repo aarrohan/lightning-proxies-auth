@@ -34,7 +34,7 @@ export default function Form() {
         .post(`${backendServerBaseURL}/auth/signup`, {
           discordCode: discordCode,
           type: "discord",
-          recaptchToken: sessionStorage.getItem("recaptchaToken") ?? "",
+          recaptchToken: sessionStorage.getItem("recaptchaToken"),
           referral: "",
           Partnerslink: null,
         })
@@ -148,7 +148,7 @@ export default function Form() {
           email: email,
           password: password,
           type: "normal",
-          recaptchToken: sessionStorage.getItem("recaptchaToken") ?? "",
+          recaptchToken: sessionStorage.getItem("recaptchaToken"),
           referral: referralId,
           Partnerslink: null,
         })

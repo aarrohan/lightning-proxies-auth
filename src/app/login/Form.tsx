@@ -80,7 +80,7 @@ export default function Form() {
           .post(`${backendServerBaseURL}/auth/login`, {
             username: userData.email,
             password: userData.sub + "24" + userData.email,
-            recaptchToken: sessionStorage.getItem("recaptchaToken") ?? "",
+            recaptchToken: sessionStorage.getItem("recaptchaToken"),
             type: "google",
           })
           .then((response) => {
@@ -132,7 +132,7 @@ export default function Form() {
         .post(`${backendServerBaseURL}/auth/login`, {
           username,
           password,
-          recaptchToken: sessionStorage.getItem("recaptchaToken") ?? "",
+          recaptchToken: sessionStorage.getItem("recaptchaToken"),
           type: "normal",
         })
         .then((response) => {
