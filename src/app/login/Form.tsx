@@ -419,14 +419,16 @@ export default function Form() {
           </button>
         </div>
 
-        <ReCAPTCHA
-          sitekey={googleRecaptchKey}
-          onChange={(value) => {
-            if (value) {
-              sessionStorage.setItem("recaptchaToken", value);
-            }
-          }}
-        />
+        <div className="flex justify-center">
+          <ReCAPTCHA
+            sitekey={googleRecaptchKey}
+            onChange={(value) => {
+              if (value) {
+                sessionStorage.setItem("recaptchaToken", value);
+              }
+            }}
+          />
+        </div>
       </div>
 
       <button className="active:scale-95 w-full py-2.5 hover:!ring-4 hover:!ring-accent/20 bg-accent rounded-[10px] text-sm sm:text-base font-semibold tracking-[-0.14px] sm:tracking-[-0.16px] text-white duration-200">
