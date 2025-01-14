@@ -105,7 +105,7 @@ export default function Form() {
               response.status === 200 &&
               response.data.message === "Link sent Successfully"
             ) {
-              router.push("/verify-email");
+              router.push(`/verify-email?email=${email}`);
             }
           })
           .catch((error) => {
@@ -165,7 +165,7 @@ export default function Form() {
             response.status === 200 &&
             response.data.message === "Link sent Successfully"
           ) {
-            router.push("/verify-email");
+            router.push(`/verify-email?email=${email}`);
           }
         })
         .catch((error) => {
